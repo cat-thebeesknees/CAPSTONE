@@ -1,11 +1,11 @@
-import AllProducts from "./Components/Products/AllProducts";
 import "./App.css";
+import RoutePaths from "./Components/RoutePaths";
 
 function App() {
   return (
     <div>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <AllProducts />
+       <RoutePaths />
     </div>
   );
 }
