@@ -52,6 +52,10 @@ export default function GetInCategory({ products, setProducts }) {
       <label htmlFor="category-select">Sort by Category:</label>
       <select id="category-select" onChange={handleSortChange}>
         <option value="all">All</option>
+        <option value="electronics">Electronics</option>
+        <option value="jewelery">Jewelery</option>
+        <option value="mens">Men&#39;s</option>
+        <option value="womens">Women&#39;s</option>
         {categories.map((category) => (
           <option key={category} value={category}>
             {category}
@@ -72,32 +76,3 @@ GetInCategory.propTypes = {
   products:PropTypes.arrayOf(PropTypes.object).isRequired,
   setProducts:PropTypes.func.isRequired,
 };
-
-
-
-
-// fetch('https://fakestoreapi.com/products/category/jewelery')
-// .then(response=>response.json())
-// .then((searchProduct)=>console.log(json))
-
-
-//OUTPUT EXAMPLE
-// [
-//   {
-//       id:5,
-//       title:'...',
-//       price:'...',
-//       category:'jewelery',
-//       description:'...',
-//       image:'...'
-//   }
-//   /*...*/
-//   {
-//       id:8,
-//       title:'...',
-//       price:'...',
-//       category:'jewelery',
-//       description:'...',
-//       image:'...'
-//   }
-// ]

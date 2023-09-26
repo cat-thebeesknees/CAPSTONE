@@ -70,7 +70,7 @@ export default function LoginUser({ setToken }) {
           <button
             type="submit"
             className="submit-button"
-            onClick={() => navigate("/profile")}
+            
           >
             Submit
           </button>
