@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import SingleProductCard from "./SingleProductCard";
 import { Routes, Route } from "react-router-dom";
-
+import GetInCategory from "./GetInCategory";
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -16,7 +16,9 @@ export default function AllProducts() {
         return response.json();
       })
       .then((data) => setProducts(data))
+      
       .catch((error) => console.error("Error pulling data", error));
+      console.log(setProducts);
   }, []);
   const handleProductClick = (productId) => {
     fetch(`https://fakestoreapi.com/products/${productId}`)
@@ -30,6 +32,7 @@ export default function AllProducts() {
   return (
     <div>
       <h1>Hilton</h1>
+      <GetInCategory products={products} setProducts={setProducts} />
       <ul>
         {products.map((product) => (
           <li key={product.id} onClick={() => handleProductClick(product.id)}>
