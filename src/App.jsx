@@ -1,11 +1,19 @@
+//App.jsx
 import "./App.css";
-import RoutePaths from "./Components/RoutePaths";
+import "./index.css";
+// import "./tailwind.css";
+// import RoutePaths from "./Components/RoutePaths"
+import LoginRoutes from "./Components/Login/LoginRoutes";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-       <RoutePaths />
+       <LoginRoutes />
+
+       <Routes>
+       <Route path="login-routes/*" element={<LoginRoutes />} />
+       </Routes>
     </div>
   );
 }
