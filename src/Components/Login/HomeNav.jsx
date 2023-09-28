@@ -1,7 +1,6 @@
 //HomeNav.jsx
 import "../CSS/HomeNav.css";
-import { Routes, Route, Outlet } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, Routes, Route, Outlet } from "react-router-dom";
 import Guest from "./Guest";
 import Register from "./Register";
 import LoginUser from "./LoginUser";
@@ -61,6 +60,21 @@ const HomeNav = () => {
                   </div>
 
                   <div className="hexagon-menu-clear">
+                    <Link to="login-user/*" className="hex-content">
+                      <span className="hex-content-inner">
+                        <span className="icon">
+                          <i className="fa fa-universal-access"></i>
+                        </span>
+                        <span className="title">Login</span>
+                      </span>
+                      <svg
+                        viewBox="0 0 173.20508075688772 200"
+                        height="200"
+                        width="174"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                      ></svg>
+                    </Link>
                     <div className="hexagon-item">
                       <div className="hex-item">
                         <div></div>
@@ -72,22 +86,6 @@ const HomeNav = () => {
                         <div></div>
                         <div></div>
                       </div>
-
-                      <Link to="login-user/*" className="hex-content">
-                        <span className="hex-content-inner">
-                          <span className="icon">
-                            <i className="fa fa-universal-access"></i>
-                          </span>
-                          <span className="title">Login</span>
-                        </span>
-                        <svg
-                          viewBox="0 0 173.20508075688772 200"
-                          height="200"
-                          width="174"
-                          version="1.1"
-                          xmlns="http://www.w3.org/2000/svg"
-                        ></svg>
-                      </Link>
                     </div>
 
                     <div className="hexagon-item">
@@ -152,19 +150,20 @@ const HomeNav = () => {
               </div>
             </div>
           </nav>
-          </div>
+        </div>
       </main>
-          <Routes>
-            <Route index element={<Admin />} />
-            <Route path="admin/*" element={<Admin />} />
-            <Route index element={<Guest />} />
-            <Route path="guest/*" element={<Guest />} />
-            <Route index element={<LoginUser />} />
-            <Route path="/login-user/*" element={<LoginUser />} />
-            <Route index element={<Register />} />
-            <Route path="/register/*" element={<Register />} />
-          </Routes>
-        
+
+      <Routes>
+        <Route index element={<Admin />} />
+        <Route path="admin/*" element={<Admin />} />
+        <Route index element={<Guest />} />
+        <Route path="guest/*" element={<Guest />} />
+        <Route index element={<LoginUser />} />
+        <Route path="/login-user/*" element={<LoginUser />} />
+        <Route index element={<Register />} />
+        <Route path="/register/*" element={<Register />} />
+      </Routes>
+
       <Outlet />
     </>
   );

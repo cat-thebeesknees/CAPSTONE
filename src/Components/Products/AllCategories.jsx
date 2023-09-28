@@ -33,15 +33,3 @@ export default function AllCategories() {
   );
 }
 
-//OUTPUT EXAMPLE
-// [
-//   "electronics",
-//   "jewelery",
-//   "men's clothing",
-//   "women's clothing"
-//   ]
-
-//FETCH CALL
-// fetch('https://fakestoreapi.com/products/categories')
-//       .then(res=>res.json())
-//       .then(json=>console.log(json))

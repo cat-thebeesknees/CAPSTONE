@@ -1,40 +1,33 @@
 //App.jsx
+
+import NoMatch from "./Components/NoMatch";
+import { Routes, Route, Router } from "react-router-dom";
+import LandingPage from "./Components/Login/LandingPage";
+import HomeNav from "./Components/Login/HomeNav";
+import Admin from "./Components/Login/Admin";
+import LoginUser from "./Components/Login/LoginUser";
+import Guest from "./Components/Login/Guest";
+import Profile from "./Components/Login/Profile";
+import Register from "./Components/Login/Register";
 import "./App.css";
 import "./index.css";
-// import "./tailwind.css";
-import NoMatch from "./Components/NoMatch";
-
-import { Routes, Route, Link } from "react-router-dom";
-import LandingPage from "./Components/Login/LandingPage";
-
-import HomeNav from "./Components/Login/HomeNav";
+import "./tailwind.css";
 
 function App() {
   return (
-    <>
-      <div>
-        <nav>
-          <Link to="/landing-page">Landing</Link>
-          <Link to="/home-nav">Home</Link>
-        </nav>
-        {/* <Link to="/guest">Guest</Link>
-        <Link to="/login-user">Login</Link>
-        <Link to="/register">Register</Link>  */}
-        </div>
-        <Routes>
-          <Route path="/" element={<LandingPage />}>
-          <Route index element={<HomeNav />} />
-            
-            
-            <Route path="home-nav/*" element={<HomeNav />} />
-
-           
-            <Route path="*" element={<NoMatch />} />
-          </Route>
-          
-        </Routes>
-      
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<HomeNav />}>
+          <Route path="admin/*" element={<Admin />} />
+          <Route path="login-user/*" element={<LoginUser />} />
+          <Route path="guest/*" element={<Guest />} />
+          <Route path="profile/*" element={<Profile />} />
+          <Route path="register/*" element={<Register />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

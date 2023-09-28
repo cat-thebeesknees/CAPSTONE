@@ -7,18 +7,14 @@ const LandingPage = () => {
     <>
       <div className="title-landing">
         <h1> HILTON </h1>
-
-        
-
         <HomeNav />
-        </div>
-         <Routes>
-         <Route index element={<HomeNav />} />
-      <Route path="home-nav/*" element={<HomeNav />} />
-      <Route path="landing-page/*" element={<LandingPage />} />
-      
-      </Routes> 
-      
+      </div>
+
+      <Routes>
+        <Route index element={<HomeNav />} />
+        <Route path="home-nav/*" element={<HomeNav />} />
+        <Route path="landing-page/*" element={<LandingPage />} />
+      </Routes>
       <Outlet />
     </>
   );

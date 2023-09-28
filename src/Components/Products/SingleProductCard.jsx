@@ -1,17 +1,20 @@
 //SingleProductCard.jsx
-import "../CSS/SingleProductCard.css";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import AddNewCart from "../Cart/AddNewCart";
-// import AddNewCart from "../Cart/AddNewCart";
+import "../CSS/SingleProductCard.css";
 function SingleProductCard({ selectedProduct }) {
-  
+  const navigate = useNavigate();
+
   if (!selectedProduct) {
     return null;
   }
 
-   return (
-    <>
+  const handleReturnToProducts = () => {
+    // Navigate back to the all products
+    navigate("/all-products");
+  };
+  return (
     <div className="product-container">
       <div
         id="single-product-card"
@@ -51,51 +54,39 @@ function SingleProductCard({ selectedProduct }) {
                   <span className="fa fa-star-half-full"></span>
                   <span id="reviews">1590 Reviews</span>
                   <div className="row price">
-                    <div className="row"><i className="fa fa-usd" aria-hidden="true"></i>{selectedProduct.price}</div>
+                    <div className="row">
+                      <i className="fa fa-usd" aria-hidden="true"></i>
+                      {selectedProduct.price}
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="row lower">
                 <div className="col"></div>
                 <div className="col text-right align-self-center">
-                <Link
-          to={"add-new-cart/*"}>
-          <i className="fa fa-shopping-cart"></i>
-           Add to cart
-        </Link>
+                  <Link to="add-new-cart">
+                    <i className="fa fa-shopping-cart"></i> Add to cart
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </>
-        
-    
+
+      <button onClick={handleReturnToProducts} className="return-button">
+        Return to All Products
+      </button>
+
+      <Link to="add-new-cart" className="add-to-cart-link">
+        Add to cart
+      </Link>
+
+      <AddNewCart />
+    </div>
   );
-};
-const SingleItem = () => {
-        const { productId } = useParams();
+}
 
-        return (
-          <>
-          <h4>Product Card: {productId}</h4>
-          <Link to="/all-products">Back to Products</Link>
-
-          <Routes>
-          <Route index element={<AddNewCart/>} />
-          <Route
-          path="add-new-cart"
-          element={<AddNewCart selectedProduct={selectedProduct} />}
-        />
-        
-        
-      </Routes>
-
-      <Outlet />
-          </>
-        )
-};
 SingleProductCard.propTypes = {
   selectedProduct: PropTypes.shape({
     title: PropTypes.string.isRequired,
