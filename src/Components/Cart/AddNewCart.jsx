@@ -1,7 +1,11 @@
 //AddNewCart.jsx
+import { Link } from "react-router-dom";
 import "../CSS/Cart.css";
+
 const AddNewCart = () => {
   return (
+
+  
     <div className="card">
             <div className="row">
                 <div className="col-md-8 cart">
@@ -69,12 +73,14 @@ const AddNewCart = () => {
                         <div className="col">TOTAL PRICE</div>
                         <div className="col text-right">&euro; 137.00</div>
                     </div>
+                    </div>
+                    </div>
+                    
+                    <Link to="payment-form" className="payment-form"> 
                     <button className="btn">CHECKOUT</button>
-                </div>
-                </div>
-            
-            
-        </div>
+                    </Link>
+                    </div>
+                    <Route path="payment-form" element={<PaymentForm />} />
   )
 }
 

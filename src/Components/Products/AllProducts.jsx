@@ -1,12 +1,12 @@
 //AllProducts.jsx
 import { useEffect, useState } from "react";
 import SingleProductCard from "./SingleProductCard";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
 import GetInCategory from "./GetInCategory";
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => {
@@ -16,9 +16,9 @@ export default function AllProducts() {
         return response.json();
       })
       .then((data) => setProducts(data))
-      
+
       .catch((error) => console.error("Error pulling data", error));
-      console.log(setProducts);
+    console.log(setProducts);
   }, []);
   const handleProductClick = (productId) => {
     fetch(`https://fakestoreapi.com/products/${productId}`)
@@ -27,31 +27,36 @@ export default function AllProducts() {
       .catch((error) =>
         console.error("Error fetching product details:", error)
       );
+    navigate("single-product-card");
   };
 
   return (
-    <div>
-      <h1>Hilton</h1>
-      <GetInCategory products={products} setProducts={setProducts} />
-      <ul>
-        {products.map((product) => (
-          <li key={product.id} onClick={() => handleProductClick(product.id)}>
-            <h2>{product.title}</h2>
-            <p>Price: {product.price}</p>
-            <img src={product.image} alt={product.title} />
-          </li>
-        ))}
-      </ul>
-      <SingleProductCard selectedProduct={selectedProduct} />
+    <>
+      <div>
+        <h1>Hilton</h1>
+        <GetInCategory products={products} setProducts={setProducts} />
+        <ul>
+          {products.map((product) => (
+            <li key={product.id} onClick={() => handleProductClick(product.id)}>
+              <h2>{product.title}</h2>
+              <p>Price: {product.price}</p>
+              <img src={product.image} alt={product.title} />
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <Routes>
-        <Route
-          path="single-product-card"
-          element={<SingleProductCard selectedProduct={selectedProduct} />}
-        />
-
-        <Route path="all-products/*" element={<AllProducts />} />
+        <Route index element={<AllProducts />} />
+        <Route path="all-products" element={<AllProducts />}>
+          <Route
+            path="single-product-card/*"
+            element={<SingleProductCard selectedProduct={selectedProduct} />}
+          />
+        </Route>
       </Routes>
-    </div>
+
+      <Outlet />
+    </>
   );
 }

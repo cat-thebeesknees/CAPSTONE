@@ -1,23 +1,33 @@
 //Guest.jsx
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import AllProducts from "../Products/AllProducts";
 import "../CSS/Guest.css";
-import { GetAllUsers } from "../User/GetAllUsers";
+
+// import SingleProductCard from "../Products/SingleProductCard";
 
 
 
 const Guest = () => {
   return (
-    
+    <>
       <div className="guestProducts">
       <AllProducts />
-      <GetAllUsers />
-       <Routes>
-       <Route path="products/:all-products" element={<AllProducts />} />
-       <Route path="guest/*" element={<Guest />} />
-       <Route path="user/:get-all-users" element={<GetAllUsers />} />
-       </Routes>            
+      
       </div>
+       <Routes>
+       <Route index element={<AllProducts />} />
+       <Route path="all-products/*" element={<AllProducts />}>
+        {/* <Route index element={<SingleProductCard />} />
+        <Route path="single-product-card/*"
+            element={<SingleProductCard selectedProduct={selectedProduct} />} /> */}
+        </Route>
+       
+       
+       </Routes>    
+
+       <Outlet />        
+      
+      </>
   );
 };
 export default Guest;
