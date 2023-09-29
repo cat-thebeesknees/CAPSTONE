@@ -1,21 +1,33 @@
 //App.jsx
-import { Outlet, Route, Routes } from "react-router-dom";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./Components/Layout";
+import Landiing from "./Components/Landing";
+import Admin from "./Components/Admin";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import Guest from "./Components/Guest";
+import NoMatch from "./Components/NoMatch";
 import "./App.css";
-import RoutePaths from "./RoutePaths";
 import "./index.css";
 // import "./tailwind.css";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <RoutePaths />
-
+    <BrowserRouter>
       <Routes>
-        <Route path="route" element={<RoutePaths />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Landiing />} />
+          <Route path="Admin" element={<Admin />} />
+          <Route path="Login" element={<Login />} />
+          <Route path="Register" element={<Register />} />
+          <Route path="Guest" element={<Guest />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
       </Routes>
-      <Outlet />
-    </div>
+      </BrowserRouter>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
