@@ -43,8 +43,8 @@ export async function loginUser() {
       },
       body: JSON.stringify({
         user: {
-          username: "mor_2314",
-          password: "83r5^_"
+          username: '',
+          password: ''
         },
       }),
     });

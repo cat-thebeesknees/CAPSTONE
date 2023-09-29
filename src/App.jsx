@@ -1,19 +1,19 @@
 //App.jsx
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
+import RoutePaths from "./RoutePaths";
 import "./index.css";
 // import "./tailwind.css";
-// import RoutePaths from "./Components/RoutePaths"
-import LoginRoutes from "./Components/Login/LoginRoutes";
-import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div>
-       <LoginRoutes />
+      <RoutePaths />
 
-       <Routes>
-       <Route path="login-routes/*" element={<LoginRoutes />} />
-       </Routes>
+      <Routes>
+        <Route path="route" element={<RoutePaths />} />
+      </Routes>
+      <Outlet />
     </div>
   );
 }
