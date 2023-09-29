@@ -1,9 +1,6 @@
 //HomeNav.jsx
 import "../CSS/HomeNav.css";
 import { Link, Routes, Route, Outlet } from "react-router-dom";
-import Guest from "./Guest";
-import Register from "./Register";
-import LoginUser from "./LoginUser";
 import Admin from "./Admin";
 
 const HomeNav = () => {
@@ -21,7 +18,7 @@ const HomeNav = () => {
             <div className="div-2"></div>
             <div className="div-3"></div>
           </div>
-          <Link to="admin/*" className="hex-content">
+          <Link to="admin" className="hex-content">
             <span className="hex-content-inner">
               <span className="icon">
                 <i className="fa fa-id-badge"></i>
@@ -60,7 +57,7 @@ const HomeNav = () => {
                   </div>
 
                   <div className="hexagon-menu-clear">
-                    <Link to="login-user/*" className="hex-content">
+                    <Link to="login-user" className="hex-content">
                       <span className="hex-content-inner">
                         <span className="icon">
                           <i className="fa fa-universal-access"></i>
@@ -100,7 +97,7 @@ const HomeNav = () => {
                         <div></div>
                       </div>
 
-                      <Link to="register/*" className="hex-content">
+                      <Link to="register" className="hex-content">
                         <span className="hex-content-inner">
                           <span className="icon">
                             <i className="fa fa-bullseye"></i>
@@ -129,7 +126,7 @@ const HomeNav = () => {
                         <div></div>
                       </div>
 
-                      <Link to="guest/*" className="hex-content">
+                      <Link to="guest" className="hex-content">
                         <span className="hex-content-inner">
                           <span className="icon">
                             <i className="fa fa-braille"></i>
@@ -154,14 +151,8 @@ const HomeNav = () => {
       </main>
 
       <Routes>
+        <Route path="home/*" element={<HomeNav />} />
         <Route index element={<Admin />} />
-        <Route path="admin/*" element={<Admin />} />
-        <Route index element={<Guest />} />
-        <Route path="guest/*" element={<Guest />} />
-        <Route index element={<LoginUser />} />
-        <Route path="/login-user/*" element={<LoginUser />} />
-        <Route index element={<Register />} />
-        <Route path="/register/*" element={<Register />} />
       </Routes>
 
       <Outlet />
