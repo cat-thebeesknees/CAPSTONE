@@ -1,23 +1,42 @@
 //Guest.jsx
-import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 import AllProducts from "../Products/AllProducts";
 import "../CSS/Guest.css";
-import { GetAllUsers } from "../User/GetAllUsers";
 
-
+// import SingleProductCard from "../Products/SingleProductCard";
 
 const Guest = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => setProducts(data))
+
+      .catch((error) => console.error("Error pulling data", error));
+    console.log(setProducts);
+  }, []);
+
   return (
-    
+    <>
       <div className="guestProducts">
-      <AllProducts />
-      <GetAllUsers />
-       <Routes>
-       <Route path="products/:all-products" element={<AllProducts />} />
-       <Route path="guest/*" element={<Guest />} />
-       <Route path="user/:get-all-users" element={<GetAllUsers />} />
-       </Routes>            
+        <AllProducts products={products} />
+
+        <Routes>
+          <Route
+            path="all-products/*"
+            element={<AllProducts products={products} />}
+          />
+        </Routes>
+        <Outlet />
       </div>
+    </>
   );
 };
 export default Guest;

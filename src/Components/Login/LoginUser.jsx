@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { Link, Routes, Route, useNavigate, Outlet } from "react-router-dom";
 import { loginUser } from "../../API/API";
 import "../CSS/Login.css";
 import Profile from "./Profile";
@@ -70,7 +70,7 @@ export default function LoginUser({ setToken }) {
           <button
             type="submit"
             className="submit-button"
-            onClick={() => navigate("/profile")}
+            
           >
             Submit
           </button>
@@ -85,6 +85,7 @@ export default function LoginUser({ setToken }) {
         <Route path="/profile" element={<Profile />} />
         <Route path="login-user/*" element={<LoginUser />} />
       </Routes>
+      <Outlet />
     </div>
   );
 }

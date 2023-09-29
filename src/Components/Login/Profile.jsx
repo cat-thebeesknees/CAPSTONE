@@ -1,23 +1,25 @@
-import AllProducts from "../Products/AllProducts"
-import LandingPage from "./LandingPage"
-import { GetAllUsers } from "../User/GetAllUsers"
-import { Routes, Route } from "react-router-dom"
-
+import AllProducts from "../Products/AllProducts";
+import { Link, Routes, Route, Outlet } from "react-router-dom";
+import AddNewCart from "../Cart/AddNewCart";
+import "../CSS/Profile.css";
 const Profile = () => {
   return (
-    <div>Profile
-    <AllProducts />
-     
-    <GetAllUsers />
+    <div className="userProfile">
+      <h1>Welcome Back!</h1>
 
+      <div className="user-nav">
+        <Link to="/profile/all-products">All Products</Link>
+        <Link to="/profile/add-new-cart">Add New Cart</Link>
+      </div>
 
-    <Routes>
-        <Route path="profile/*" element={<Profile />} />
-        <Route path="products/:all-products" element={<AllProducts />} />
-        <Route path="login/:landing-page" element={<LandingPage />} />
+      <Routes>
+        <Route path="all-products/*" element={<AllProducts />} />
+        <Route path="add-new-cart/*" element={<AddNewCart />} />
       </Routes>
-</div>
-  )
-}
 
-export default Profile
+      <Outlet />
+    </div>
+  );
+};
+
+export default Profile;
